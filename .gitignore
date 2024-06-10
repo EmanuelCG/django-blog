@@ -17,7 +17,15 @@ venv.bak/
 *.pylint.d
 media/
 staticfiles/
-static/
+core/static/
+core/img/
+!static/img/favicon.ico
+!static/img/login_log.png
+!core/static/js/
+!core/static/css/
+!core/static/lib/
+!core/img/favicon.ico
+!core/img/login_logo.png
 **/migrations/*
 .idea/
 .vscode/
