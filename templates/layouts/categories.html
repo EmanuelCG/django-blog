@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+
+{% block content %}
+{% include 'includes/header.html'%}
+<!-- Category News Slider Start -->
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            {% comment %} init for {% endcomment %}
+            {% for category in categories%}
+            <div class="col-lg-6 py-3">
+                <div class="bg-light py-2 px-4 mb-3">
+                    <h3 class="m-0">{{category.name}}</h3>
+                </div>
+                <div class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
+                    {%for post in category.post_set.all %}
+                    <div class="position-relative">
+                        <img class="img-fluid w-100" src="{{post.post_img_portada.url}}" style="object-fit: cover;">
+                        <div class="overlay position-relative bg-light">
+                            <div class="mb-2" style="font-size: 13px;">
+                                <a href="{%url 'categories'%}">{{category.name}}</a>
+                                <span class="px-1">/</span>
+                                <span>{{post.updated_at | date:"F d, Y"}}</span>
+                            </div>
+                            <a class="h4 m-0" href="">{{post.name}}</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% comment %}  {% endcomment %}
+                </div>
+            </div>
+            {% endfor %}
+            {% comment %} endfor {% endcomment %}
+        </div>
+    </div>
+</div>
+<!-- Category News Slider End -->
+{% include 'includes/footer.html'%}
+{% endblock  %}

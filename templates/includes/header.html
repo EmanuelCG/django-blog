@@ -1,0 +1,100 @@
+{% load custom_filters %}
+<!-- Topbar Start -->
+<div class="container-fluid">
+  <div class="row align-items-center bg-light px-lg-5">
+    <div class="col-12 col-md-8">
+      <div class="d-flex justify-content-between">
+        <div
+          class="bg-primary text-white text-center py-2"
+          style="width: 100px">
+          Tranding
+        </div>
+        <div
+          class="owl-carousel owl-carousel-1 tranding-carousel position-relative d-inline-flex align-items-center ml-3"
+          style="width: calc(100% - 100px); padding-left: 90px">
+
+          {% for post in posts %}
+          <div class="">
+            <a class="text-secondary" href="">{{post.title }}</a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-right d-none d-md-block">
+      {{current_datetime | date:"l, F j, Y"}}
+    </div>
+  </div>
+  <div class="row align-items-center py-2 px-lg-5">
+    <div class="col-lg-4">
+      <a href="/" class="navbar-brand d-none d-lg-block">
+        <h1 class="m-0 display-5 text-uppercase">
+          <span class="text-primary">Blog</span>News
+        </h1>
+      </a>
+    </div>
+    <div class="col-lg-8 text-center text-lg-right">
+      <div class="d-flex justify-content-end mb-3 mb-lg-0">
+        {%if user.id is None%}
+        <div class="widget-header">
+            <small class="title text-muted">Welcome Guest!</small>
+            <div> 
+                <a href="{%url 'login'%}">Sign in</a> <span class="dark-transp"> | </span>
+                <a href="{%url 'register'%}"> Register</a>
+            </div>
+        </div>
+        {%else%}
+        <div class="widget-header">
+            <small class="title text-muted">Welcome {{user.first_name}}</small>
+            <div> 
+                <a href="{%url 'admin:index'%}">Dashboard</a> <span class="dark-transp"> | </span>
+                <a href="{%url 'logout'%}"> Logout</a>
+            </div>
+        </div>
+         {%endif%} 
+    </div>
+  </div>
+</div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid p-0 mb-3">
+  <nav
+    class="navbar navbar-expand-lg bg-light navbar-light py-2 py-lg-0 px-lg-5"
+  >
+    <a href="" class="navbar-brand d-block d-lg-none">
+      <h1 class="m-0 display-5 text-uppercase">
+        <span class="text-primary">News</span>Room
+      </h1>
+    </a>
+    <button
+      type="button"
+      class="navbar-toggler"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse justify-content-between px-0 px-lg-3"
+      id="navbarCollapse"
+    >
+      <div class="navbar-nav mr-auto py-0">
+        <a href="/" class="nav-item nav-link active">Home</a>
+        <a href="{% url 'categories'%}" class="nav-item nav-link">Categories</a>
+        <a href="contact.html" class="nav-item nav-link">Contact</a>
+      </div>
+      <div class="input-group ml-auto" style="width: 100%; max-width: 300px">
+        <form action="{% url 'search'%}" method="GET" class="form-inline">
+        <input type="text" name="keyword" class="form-control" placeholder="Search" />
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-primary">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->
