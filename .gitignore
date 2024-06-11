@@ -32,4 +32,4 @@ core/img/
 *.sublime-project
 *.sublime-workspace
 *.iml
-env/
+.env
