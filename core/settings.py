@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +22,7 @@ DEFAULT_CHARSET = 'utf-8'
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^_5e!-%^-73!3m_f!)*tk@@qr_czk8ba^qa6@g@kutc671@(*b'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -86,11 +88,11 @@ AUTH_USER_MODEL = 'accounts.Account'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blog_django',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
-        'HOST': 'localhost', # Si PostgreSQL está en el mismo servidor
-        'PORT': '5432', # Puerto predeterminado de PostgreSQL     
+        'NAME': os.environ.get('NAME'),
+        'USER': os.environ.get('USER'),
+        'PASSWORD': os.environ.get('PASSWORD'),
+        'HOST': os.environ.get('HOST'), # Si PostgreSQL está en el mismo servidor
+        'PORT': int(os.environ.get('PORT')), # Puerto predeterminado de PostgreSQL     
 
     }
 }
